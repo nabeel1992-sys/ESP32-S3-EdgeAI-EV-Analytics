@@ -11,7 +11,7 @@ This project presents a high-performance edge computing framework developed on t
 * High Precision: The ai model is extremely accurate with a mean absolute error (mae) of 0.09 degrees celsius.
 * Real-Time Dashboard: Sends data summaries in json format via mqtt to a node-red dashboard for driver visualization.
 
-![Real-time Vehicle Dashboard](EV_EdgeAI_Main/images/WLTP_Dasboard.png)
+![Real-time Vehicle Dashboard](EV_EdgeAI_Main/images/WLTP_Dashboard.png)
 
 ## 📊 Research Methodology and Data
 
