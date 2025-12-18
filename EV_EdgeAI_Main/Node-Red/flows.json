@@ -1,0 +1,304 @@
+[
+    {
+        "id": "1d4e5e6b741590f1",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "adf09b1a4a41e71e",
+        "type": "debug",
+        "z": "1d4e5e6b741590f1",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 290,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "a97334232f28d60e",
+        "type": "ui_template",
+        "z": "1d4e5e6b741590f1",
+        "group": "4e7ef0276a16a454",
+        "name": "Time, Speed and Distance Display",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "\n<!-- Font Awesome for Icons -->\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css\">\n\n<style>\n  .stats-card {\n    max-width: 240px;\n    margin: auto;\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);\n    overflow: hidden;\n    font-family: sans-serif;\n  }\n\n  .stats-card .header {\n    background: linear-gradient(135deg, #8e44ad, #3498db);\n    color: white;\n    text-align: center;\n    padding: 12px 0;\n    font-size: 16px;\n    font-weight: 600;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 8px;\n  }\n\n  .stats-card .row {\n    display: flex;\n    align-items: center;\n    padding: 12px 16px;\n  }\n\n  .stats-card .icon {\n    font-size: 20px;\n    width: 28px;\n    text-align: center;\n    color: #555;\n  }\n\n  .stats-card .label {\n    flex: 1;\n    font-size: 14px;\n    color: #666;\n  }\n\n  .stats-card .value {\n    font-size: 18px;\n    font-weight: 700;\n    color: #333;\n  }\n\n  .stats-card .unit {\n    font-size: 12px;\n    color: #999;\n    margin-left: 4px;\n  }\n</style>\n\n<div class=\"stats-card\">\n  <div class=\"header\">\n    <i class=\"fa fa-rocket\"></i>\n    <span>Speed & Distance</span>\n  </div>\n\n  <!-- Time -->\n  <div class=\"row\">\n    <i class=\"fa fa-clock icon\"></i>\n    <div class=\"label\">Time</div>\n    <div class=\"value\">\n      {{msg.payload.time || \"00:00\"}}<span class=\"unit\">min</span>\n    </div>\n  </div>\n\n  <!-- Speed -->\n  <div class=\"row\">\n    <i class=\"fa fa-tachometer-alt icon\"></i>\n    <div class=\"label\">Speed</div>\n    <div class=\"value\">\n      {{msg.payload.speed || 0}}<span class=\"unit\">km/h</span>\n    </div>\n  </div>\n\n  <!-- Distance -->\n  <div class=\"row\">\n    <i class=\"fa fa-road icon\"></i>\n    <div class=\"label\">Distance</div>\n    <div class=\"value\">\n      {{msg.payload.distance || 0}}<span class=\"unit\">km</span>\n    </div>\n  </div>\n</div>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 540,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0addbf5f779d3ffa",
+        "type": "ui_template",
+        "z": "1d4e5e6b741590f1",
+        "group": "edcb444f3c430885",
+        "name": "Accel Coast and Battery Display",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<!-- Font Awesome for Icons -->\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css\">\n\n<style>\n  .stats-column {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 12px;\n    justify-content: center;\n    padding: 16px 0;\n  }\n\n  .stats-card {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);\n    overflow: hidden;\n    width: 280px;\n    font-family: sans-serif;\n  }\n\n  .stats-card .header {\n    background: linear-gradient(135deg, #6a11cb, #2575fc);\n    color: #fff;\n    padding: 12px;\n    font-size: 16px;\n    font-weight: 600;\n    display: flex;\n    align-items: center;\n    gap: 8px;\n  }\n\n  .stats-card .body {\n    padding: 16px;\n  }\n\n  .stat-line {\n    display: flex;\n    align-items: center;\n    margin-bottom: 14px;\n    gap: 8px;\n  }\n\n  .stat-line:last-child {\n    margin-bottom: 0;\n  }\n\n  .stat-line i {\n    font-size: 20px;\n    width: 24px;\n    text-align: center;\n    color: #555;\n  }\n\n  .stat-label {\n    flex: 1;\n    font-size: 14px;\n    color: #444;\n  }\n\n  .stat-value {\n    font-size: 18px;\n    font-weight: 700;\n    color: #222;\n  }\n\n  .stat-unit {\n    font-size: 12px;\n    color: #888;\n    margin-left: 4px;\n  }\n\n  .status-green {\n    color: green;\n  }\n\n  .status-red {\n    color: darkred;\n  }\n\n  .status-gray {\n    color: gray;\n  }\n</style>\n\n<div class=\"stats-column\">\n\n  <!-- Acceleration Card -->\n  <div class=\"stats-card\">\n    <div class=\"header\">\n      <i class=\"fa fa-rocket\"></i>\n      <span>Acceleration</span>\n    </div>\n    <div class=\"body\">\n      <div class=\"stat-line\">\n        <i class=\"fa fa-tachometer-alt\"></i>\n        <div class=\"stat-label\">Value</div>\n        <div class=\"stat-value\">\n          {{msg.payload.acceleration || 0}}\n          <span class=\"stat-unit\">m/s²</span>\n        </div>\n      </div>\n      <div class=\"stat-line\">\n        <i class=\"fa\"\n           ng-class=\"{\n             'fa-arrow-up status-green': msg.payload.acceleration > 0,\n             'fa-arrow-down status-red': msg.payload.acceleration < 0,\n             'fa-arrows-alt-h status-gray': msg.payload.acceleration == 0\n           }\">\n        </i>\n        <div class=\"stat-label\">Trend</div>\n        <div class=\"stat-value\">\n          {{\n          msg.payload.acceleration > 0 ? 'Up' :\n          msg.payload.acceleration < 0 ? 'Down' : 'Flat' }} </div>\n        </div>\n      </div>\n    </div>\n\n    <!-- Coasting Summary Card -->\n    <div class=\"stats-card\">\n      <div class=\"header\">\n        <i class=\"fa fa-leaf\"></i>\n        <span>Coasting Summary</span>\n      </div>\n      <div class=\"body\">\n        <div class=\"stat-line\">\n          <i class=\"fa fa-clock\"></i>\n          <div class=\"stat-label\">Time</div>\n          <div class=\"stat-value\">\n            {{msg.payload.coasting_time || 0}}\n            <span class=\"stat-unit\">sec</span>\n          </div>\n        </div>\n        <div class=\"stat-line\">\n          <i class=\"fa fa-percent\"></i>\n          <div class=\"stat-label\">Percent</div>\n          <div class=\"stat-value\">\n            {{msg.payload.coasting_percent || 0}}<span class=\"stat-unit\">%</span>\n          </div>\n        </div>\n        <div class=\"stat-line\">\n          <i class=\"fa fa-info-circle\"></i>\n          <div class=\"stat-label\">Status</div>\n          <div class=\"stat-value\" ng-class=\"{\n          'status-red': msg.payload.coasting_status === 'Low Coasting',\n          'status-gray': msg.payload.coasting_status === 'Moderate Coasting',\n          'status-green': msg.payload.coasting_status === 'High Coasting'\n        }\">\n            {{msg.payload.coasting_status || '--'}}\n          </div>\n        </div>\n        <div class=\"stat-line\">\n          <i class=\"fa fa-toggle-on\"></i>\n          <div class=\"stat-label\">Mode</div>\n          <div class=\"stat-value\" ng-class=\"{\n          'status-green': msg.payload.eco_status === 'Eco-Coasting',\n          'status-gray': msg.payload.eco_status === 'Idle'\n        }\">\n            {{msg.payload.eco_status || '--'}}\n          </div>\n        </div>\n      </div>\n    </div>\n  <!-- Battery Current Card -->\n  <div class=\"stats-card\">\n    <div class=\"header\">\n      <i class=\"fa fa-battery-full\"></i>\n      <span>Battery Current</span>\n    </div>\n    <div class=\"body\">\n      <div class=\"stat-line\">\n        <i class=\"fa fa-percent\"></i>\n        <div class=\"stat-label\">Efficiency</div>\n        <div class=\"stat-value\">\n          {{msg.payload.batt_efficiency || 0}}<span class=\"stat-unit\">%</span>\n        </div>\n      </div>\n      <div class=\"stat-line\">\n        <i class=\"fa fa-info-circle\"></i>\n        <div class=\"stat-label\">Status</div>\n        <div class=\"stat-value\" ng-class=\"{\n            'status-green': msg.payload.current_status === 'High',\n            'status-gray' : msg.payload.current_status === 'Moderate',\n            'status-red'  : msg.payload.current_status === 'Low'\n          }\">\n          {{msg.payload.current_status || '--'}}\n        </div>\n      </div>\n    </div>\n  </div>\n  </div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 530,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a3b511972c30ef4c",
+        "type": "ui_template",
+        "z": "1d4e5e6b741590f1",
+        "group": "d6cafbcd84ca4cbe",
+        "name": "Consumption Regen and Temp display",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<!-- Font Awesome for Icons -->\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css\">\n\n<style>\n  .stats-column {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 12px;\n    justify-content: center;\n    padding: 16px 0;\n  }\n\n  .stats-card {\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);\n    overflow: hidden;\n    width: 280px;\n    font-family: sans-serif;\n  }\n\n  .stats-card .header {\n    background: linear-gradient(135deg, #6a11cb, #2575fc);\n    color: #fff;\n    padding: 12px;\n    font-size: 16px;\n    font-weight: 600;\n    display: flex;\n    align-items: center;\n    gap: 8px;\n  }\n\n  .stats-card .body {\n    padding: 16px;\n  }\n\n  .stat-line {\n    display: flex;\n    align-items: center;\n    margin-bottom: 14px;\n    gap: 8px;\n  }\n\n  .stat-line:last-child {\n    margin-bottom: 0;\n  }\n\n  .stat-line i {\n    font-size: 20px;\n    width: 24px;\n    text-align: center;\n    color: #555;\n  }\n\n  .stat-label {\n    flex: 1;\n    font-size: 14px;\n    color: #444;\n  }\n\n  .stat-value {\n    font-size: 18px;\n    font-weight: 700;\n    color: #222;\n  }\n\n  .stat-unit {\n    font-size: 12px;\n    color: #888;\n    margin-left: 4px;\n  }\n\n  .status-green {\n    color: green;\n  }\n\n  .status-red {\n    color: darkred;\n  }\n\n  .status-gray {\n    color: gray;\n  }\n</style>\n\n<div class=\"stats-column\">\n\n\n  <!-- Energy Consumption Card -->\n  <div class=\"stats-card\">\n    <div class=\"header\">\n      <i class=\"fa fa-bolt\"></i>\n      <span>Energy Consumption</span>\n    </div>\n    <div class=\"body\">\n      <div class=\"stat-line\">\n        <i class=\"fa fa-bolt\"></i>\n        <div class=\"stat-label\">Live</div>\n        <div class=\"stat-value\">\n          {{msg.payload.energy_consumption || 0}}<span class=\"stat-unit\">Wh</span>\n        </div>\n      </div>\n      <div class=\"stat-line\">\n        <i class=\"fa fa-chart-area\"></i>\n        <div class=\"stat-label\">Net</div>\n        <div class=\"stat-value\">\n          {{msg.payload.energy_total || 0}}<span class=\"stat-unit\">KWh</span>\n        </div>\n      </div>\n      <div class=\"stat-line\">\n        <i class=\"fa fa-tachometer-alt\"></i>\n        <div class=\"stat-label\">Avg</div>\n        <div class=\"stat-value\">\n          {{msg.payload.energy_avg || 0}}<span class=\"stat-unit\">Wh/km</span>\n        </div>\n      </div>\n      <div class=\"stat-line\">\n        <i class=\"fa fa-info-circle\"></i>\n        <div class=\"stat-label\">Status</div>\n        <div class=\"stat-value\" ng-class=\"{\n          'status-green': msg.payload.energy_status === 'Efficient',\n          'status-gray' : msg.payload.energy_status === 'Moderate',\n          'status-red'  : msg.payload.energy_status === 'Inefficient'\n        }\">\n          {{msg.payload.energy_status || '--'}}\n        </div>\n      </div>\n    </div>\n  </div>\n<!-- Regen Efficiency Card -->\n<div class=\"stats-card\">\n  <div class=\"header\">\n    <i class=\"fa fa-recycle\"></i>\n    <span>Regen Efficiency</span>\n  </div>\n  <div class=\"body\">\n    <div class=\"stat-line\">\n      <i class=\"fa fa-chart-line\"></i>\n      <div class=\"stat-label\">Average</div>\n      <div class=\"stat-value\">\n        {{msg.payload.regen_avg || 0}}<span class=\"stat-unit\">%</span>\n      </div>\n    </div>\n\n    <div class=\"stat-line\">\n      <i class=\"fa fa-info-circle\"></i>\n      <div class=\"stat-label\">Status</div>\n      <div class=\"stat-value\" ng-class=\"{\n          'status-green': msg.payload.regen_status === 'Good Regen',\n          'status-gray' : msg.payload.regen_status === 'Moderate Regen',\n          'status-red'  : msg.payload.regen_status === 'Low Regen'\n        }\">\n        {{msg.payload.regen_status || '--'}}\n      </div>\n    </div>\n\n    <div class=\"stat-line\">\n      <i class=\"fa fa-battery-three-quarters\"></i>\n      <div class=\"stat-label\">Recovered</div>\n      <div class=\"stat-value\">\n        {{msg.payload.recovered_energy || 0}}<span class=\"stat-unit\">Wh</span>\n      </div>\n    </div>\n\n    <div class=\"stat-line\">\n      <i class=\"fa fa-road\"></i>\n      <div class=\"stat-label\">Extra Range</div>\n      <div class=\"stat-value\">\n        {{msg.payload.extra_range || 0}}<span class=\"stat-unit\">km</span>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Battery Temperature Card -->\n<div class=\"stats-card\">\n  <div class=\"header\">\n    <i class=\"fa fa-thermometer-half\"></i>\n    <span>Battery Temp</span>\n  </div>\n  <div class=\"body\">\n    <div class=\"stat-line\">\n      <i class=\"fa fa-thermometer-empty\"></i>\n      <div class=\"stat-label\">Current</div>\n      <div class=\"stat-value\">\n        {{msg.payload.battery_temp || '--'}}<span class=\"stat-unit\">°C</span>\n      </div>\n    </div>\n\n    <div class=\"stat-line\">\n      <i class=\"fa fa-info-circle\"></i>\n      <div class=\"stat-label\">Status</div>\n      <div class=\"stat-value\" ng-class=\"{\n          'status-green': msg.payload.temp_status === 'Optimal',\n          'status-gray' : msg.payload.temp_status === 'Cold',\n          'status-red'  : msg.payload.temp_status === 'Warm'\n        }\">\n        {{msg.payload.temp_status || '--'}}\n      </div>\n    </div>\n\n    <div class=\"stat-line\">\n      <i class=\"fa fa-clock\"></i>\n      <div class=\"stat-label\">Next 2 Min Prediction</div>\n      <div class=\"stat-value\">\n        {{msg.payload.temp_rise_pred || 0}}<span class=\"stat-unit\">°C</span>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 550,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "504aa9f682709ede",
+        "type": "ui_template",
+        "z": "1d4e5e6b741590f1",
+        "group": "619811278b3011be",
+        "name": "Trip Score",
+        "order": 1,
+        "width": 6,
+        "height": 6,
+        "format": "<!-- Font Awesome (Required if not already included) -->\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css\">\n\n<style>\n  .stats-card {\n    max-width: 280px;\n    margin: auto;\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);\n    overflow: hidden;\n    font-family: sans-serif;\n  }\n\n  .stats-card .header {\n    background: linear-gradient(135deg, #2980b9, #6dd5fa);\n    color: white;\n    text-align: center;\n    padding: 12px 0;\n    font-size: 16px;\n    font-weight: 600;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    gap: 8px;\n  }\n\n  .stats-card .body {\n    padding: 16px;\n  }\n\n  .score-block {\n    display: flex;\n    align-items: flex-end;\n    justify-content: space-between;\n    margin-bottom: 16px;\n  }\n\n  .score-large {\n    font-size: 36px;\n    font-weight: 600;\n    color: #1e70bf;\n    line-height: 1;\n  }\n\n  .score-large small {\n    font-size: 16px;\n    color: #888;\n  }\n\n  .behavior-pill {\n    background: #ffe680;\n    color: #333;\n    padding: 6px 12px;\n    border-radius: 20px;\n    font-size: 14px;\n    white-space: nowrap;\n  }\n\n  .score-line {\n    display: flex;\n    align-items: center;\n    margin-bottom: 10px;\n    gap: 8px;\n  }\n\n  .score-line:last-child {\n    margin-bottom: 0;\n  }\n\n  .score-line i {\n    width: 20px;\n    color: #555;\n  }\n\n  .score-label {\n    flex: 1;\n    font-size: 14px;\n    color: #444;\n  }\n\n  .score-value {\n    font-size: 16px;\n    font-weight: bold;\n    color: #222;\n  }\n</style>\n\n<div class=\"stats-card\">\n  <!-- Header -->\n  <div class=\"header\">\n    <i class=\"fa fa-star\"></i>\n    <span>Trip Efficiency Score</span>\n  </div>\n\n  <!-- Body -->\n  <div class=\"body\">\n    <!-- Score + Behavior -->\n    <div class=\"score-block\">\n      <div class=\"score-large\">\n        {{msg.payload.driver_score || 0}}<br />\n        <small>/ 100</small>\n      </div>\n      <div class=\"behavior-pill\">\n        {{msg.payload.driver_behavior || '--'}}\n      </div>\n    </div>\n\n    <!-- Breakdown -->\n    <div class=\"score-line\">\n      <i class=\"fa fa-bolt\"></i>\n      <div class=\"score-label\">Energy Consumption</div>\n      <div class=\"score-value\">{{msg.payload.energy_score || 0}}%</div>\n    </div>\n\n    <div class=\"score-line\">\n      <i class=\"fa fa-recycle\"></i>\n      <div class=\"score-label\">Regen Efficiency</div>\n      <div class=\"score-value\">{{msg.payload.regen_score || 0}}%</div>\n    </div>\n\n    <div class=\"score-line\">\n      <i class=\"fa fa-thermometer-half\"></i>\n      <div class=\"score-label\">Battery Temp</div>\n      <div class=\"score-value\">{{msg.payload.temp_score || 0}}%</div>\n    </div>\n\n    <div class=\"score-line\">\n      <i class=\"fa fa-charging-station\"></i>\n      <div class=\"score-label\">Flow Efficiency</div>\n      <div class=\"score-value\">{{msg.payload.current_score || 0}}%</div>\n    </div>\n\n    <div class=\"score-line\">\n      <i class=\"fa fa-leaf\"></i>\n      <div class=\"score-label\">Coasting</div>\n      <div class=\"score-value\">{{msg.payload.coasting_score || 0}}%</div>\n    </div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 470,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4798fa29cef93cec",
+        "type": "mqtt in",
+        "z": "1d4e5e6b741590f1",
+        "name": "",
+        "topic": "trip/data",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "bbbb42cad9a56194",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 80,
+        "y": 280,
+        "wires": [
+            [
+                "adf09b1a4a41e71e",
+                "0addbf5f779d3ffa",
+                "a3b511972c30ef4c",
+                "504aa9f682709ede",
+                "4b2e9abc0360fba0",
+                "39214c50258ab269",
+                "a97334232f28d60e"
+            ]
+        ]
+    },
+    {
+        "id": "4b2e9abc0360fba0",
+        "type": "ui_template",
+        "z": "1d4e5e6b741590f1",
+        "group": "4e7ef0276a16a454",
+        "name": "Battery SOC and Estimated Range",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<!-- Font Awesome for Icons -->\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css\">\n\n<style>\n  .stats-card {\n    max-width: 240px;\n    margin: auto;\n    background: #fff;\n    border-radius: 12px;\n    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);\n    overflow: hidden;\n    font-family: sans-serif;\n  }\n\n  .stats-card .header {\n    background: linear-gradient(135deg, #8e44ad, #3498db);\n    color: white;\n    text-align: center;\n    padding: 12px 0;\n    font-size: 16px;\n    font-weight: 600;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 8px;\n  }\n\n  .stats-card .row {\n    display: flex;\n    align-items: center;\n    padding: 12px 16px;\n  }\n\n  .stats-card .icon {\n    font-size: 20px;\n    width: 28px;\n    text-align: center;\n    color: #555;\n  }\n\n  .stats-card .label {\n    flex: 1;\n    font-size: 14px;\n    color: #666;\n  }\n\n  .stats-card .value {\n    font-size: 18px;\n    font-weight: 700;\n    color: #333;\n  }\n\n  .stats-card .unit {\n    font-size: 12px;\n    color: #999;\n    margin-left: 4px;\n  }\n</style>\n\n<!-- Battery SOC and Range Card -->\n<div class=\"stats-card\">\n  <div class=\"header\">\n    <i class=\"fa fa-battery-half\"></i>\n    <span>Battery & Range</span>\n  </div>\n  <div class=\"body\">\n\n    <!-- SOC Percentage -->\n    <div class=\"stat-line\">\n      <i class=\"fa fa-bolt\"></i>\n      <div class=\"stat-label\">battery SOC</div>\n      <div class=\"stat-value\">\n        {{msg.payload.soc_percent || 0}}<span class=\"stat-unit\">%</span>\n      </div>\n    </div>\n\n    <!-- Estimated Range -->\n    <div class=\"stat-line\">\n      <i class=\"fa fa-road\"></i>\n      <div class=\"stat-label\">Est. Range</div>\n      <div class=\"stat-value\">\n        {{msg.payload.range_left_km || 0}}<span class=\"stat-unit\">km</span>\n      </div>\n    </div>\n\n  </div>\n</div>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 540,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "39214c50258ab269",
+        "type": "function",
+        "z": "1d4e5e6b741590f1",
+        "name": "csv function",
+        "func": "// Function Node: Convert JSON object to CSV row automatically\n\nlet data = msg.payload;\n\n// Extract keys in same order every time\nlet keys = Object.keys(data);\n\n// Agar header chahiye file ke start me\nif (!flow.get(\"csvHeaderWritten\")) {\n    let header = keys.join(\",\");\n    node.send({ payload: header }); \n    flow.set(\"csvHeaderWritten\", true);\n}\n\n// Extract values as CSV row\nlet values = keys.map(k => data[k]);\nmsg.payload = values.join(\",\");\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 560,
+        "wires": [
+            [
+                "ed0d71cb0aa5648b"
+            ]
+        ]
+    },
+    {
+        "id": "5456a36ed4b74c94",
+        "type": "file",
+        "z": "1d4e5e6b741590f1",
+        "name": "",
+        "filename": "D:\\My Finnish Documents\\Software and Study\\Thesis Proposal/resultdata.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 830,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed0d71cb0aa5648b",
+        "type": "csv",
+        "z": "1d4e5e6b741590f1",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\r\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 450,
+        "y": 560,
+        "wires": [
+            [
+                "5456a36ed4b74c94"
+            ]
+        ]
+    },
+    {
+        "id": "4e7ef0276a16a454",
+        "type": "ui_group",
+        "name": "Info Tab 1",
+        "tab": "186c9c5735c4d44f",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "edcb444f3c430885",
+        "type": "ui_group",
+        "name": "Info Tab 2",
+        "tab": "186c9c5735c4d44f",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "d6cafbcd84ca4cbe",
+        "type": "ui_group",
+        "name": "Info Tab 3",
+        "tab": "186c9c5735c4d44f",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "619811278b3011be",
+        "type": "ui_group",
+        "name": "Info Tab 4",
+        "tab": "186c9c5735c4d44f",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "bbbb42cad9a56194",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.122",
+        "port": "1884",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "186c9c5735c4d44f",
+        "type": "ui_tab",
+        "name": "Vehicle Dashboard",
+        "icon": "mi-electric_car",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
