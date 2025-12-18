@@ -2,7 +2,7 @@
 
 This project presents a high-performance edge computing framework developed on the esp32-s3 microcontroller. It is designed to process electric vehicle telemetry at 1 Hz to provide immediate feedback on driving efficiency and battery safety without relying on cloud servers.
 
-![System Architecture](images/WLTP_Block_Diagram.png)
+![System Architecture](EV_EdgeAI_Main/images/WLTP_Block_Diagram.png)
 
 ## 🌟 Key Technical Features
 
@@ -11,7 +11,7 @@ This project presents a high-performance edge computing framework developed on t
 * High Precision: The ai model is extremely accurate with a mean absolute error (mae) of 0.09 degrees celsius.
 * Real-Time Dashboard: Sends data summaries in json format via mqtt to a node-red dashboard for driver visualization.
 
-![Real-time Vehicle Dashboard](images/WLTP_Dasboard.png)
+![Real-time Vehicle Dashboard](EV_EdgeAI_Main/images/WLTP_Dasboard.png)
 
 ## 📊 Research Methodology and Data
 
@@ -19,7 +19,7 @@ This project presents a high-performance edge computing framework developed on t
 * 1 Hz Telemetry Engine: Processes 10 key parameters every second, including speed, acceleration, and battery current.
 * On-Device Event Detection: Detects coasting segments based on near-zero acceleration and current thresholds.
 
-![WLTP Speed and Coasting Points](images/WLTP_Coasting.png)
+![WLTP Speed and Coasting Points](EV_EdgeAI_Main/images/WLTP_Coasting.png)
 
 ## 📈 Analytics and Performance Results
 
@@ -27,9 +27,9 @@ This project presents a high-performance edge computing framework developed on t
 * Thermal Accuracy: On-device inference matches actual battery trends throughout the 30-minute WLTP Class 3b trip.
 * System Integrity: Lossless 1 Hz telemetry delivery confirmed with 1801 out of 1801 messages received successfully.
 
-![Energy Consumption Trends](images/WLTP_Cons.png)
-![Battery Temperature Prediction Accuracy](images/WLTP_Temp_Pred.png)
-![Telemetry Integrity Verification](images/WLTP_1801.png)
+![Energy Consumption Trends](EV_EdgeAI_Main/images/WLTP_Cons.png)
+![Battery Temperature Prediction Accuracy](EV_EdgeAI_Main/images/WLTP_Temp_Pred.png)
+![Telemetry Integrity Verification](EV_EdgeAI_Main/images/WLTP_1801.png)
 
 ## 🛠️ Tech Stack
 
