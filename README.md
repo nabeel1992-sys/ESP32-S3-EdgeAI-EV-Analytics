@@ -2,7 +2,7 @@
 
 This project presents a high-performance edge computing framework developed on the esp32-s3 microcontroller. It is designed to process electric vehicle telemetry at 1 Hz to provide immediate feedback on driving efficiency and battery safety without relying on cloud servers.
 
-![System Architecture](images/WLTP_Block_Diagram.png)
+![System Architecture](Thesis Images & Graphs/WLTP_Block_Diagram.png)
 
 ## 🌟 Key Technical Features
 
