@@ -19,14 +19,14 @@ This project presents a high-performance edge computing framework developed on t
 * 1 Hz Telemetry Engine: Processes 10 key parameters every second, including speed, acceleration, and battery current.
 * On-Device Event Detection: Detects coasting segments based on near-zero acceleration and current thresholds.
 
-![WLTP Speed and Coasting Points](EV_EdgeAI_Main/images/WLTP_Coasting.png)
+
 
 ## 📈 Analytics and Performance Results
 
 * Energy Consumption: Calculates instantaneous and cumulative net energy, matching offline matlab analysis.
 * Thermal Accuracy: On-device inference matches actual battery trends throughout the 30-minute WLTP Class 3b trip.
 * System Integrity: Lossless 1 Hz telemetry delivery confirmed with 1801 out of 1801 messages received successfully.
-
+![WLTP Speed and Coasting Points](EV_EdgeAI_Main/images/WLTP_Coasting.png)
 ![Energy Consumption Trends](EV_EdgeAI_Main/images/WLTP_Cons.png)
 ![Battery Temperature Prediction Accuracy](EV_EdgeAI_Main/images/WLTP_Temp_Pred.png)
 ![Telemetry Integrity Verification](EV_EdgeAI_Main/images/WLTP_1801.png)
