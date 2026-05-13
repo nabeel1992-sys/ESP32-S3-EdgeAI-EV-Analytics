@@ -19,12 +19,12 @@ This project implements a real-time Edge AI telemetry system designed to run ent
 ### Real-Time Vehicle Dashboard
 The telemetry data is ingested by Node-RED, parsed, and displayed on a local dashboard providing live metrics on speed, battery SOC, estimated range, and trip efficiency scores.
 
-![Vehicle Dashboard](images/WLTP_Dashboard.jpg)
+![Vehicle Dashboard](images/WLTP_Dashboard.png)
 
 ### Node-RED Flow
 A lightweight, efficient Node-RED flow processes the incoming MQTT packets (`trip/data`), formats the JSON payload, dynamically updates the UI, and logs the processed data back into a CSV file for post-trip analysis.
 
-![Node-RED Flow](images/WLTP_1801.jpg)
+![Node-RED Flow](images/WLTP_1801.png)
 
 ### Driving Behavior & Energy Analysis
 The system tracks mechanical and electrical parameters at 1Hz. Key analytical outputs include coasting point detection and instantaneous vs. cumulative energy consumption tracking.
