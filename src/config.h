@@ -6,9 +6,9 @@
 // ============================================================
 
 // --- WiFi and MQTT (network settings) ---
-#define WIFI_SSID        "YOUR_WIFI_SSID_HERE"
-#define WIFI_PASSWORD    "YOUR_WIFI_PASSWORD_HERE"
-#define MQTT_BROKER_IP   "192.168.XXX.XXX"
+#define WIFI_SSID        "FRITZ!Box 7583"
+#define WIFI_PASSWORD    "43649895061452487734"
+#define MQTT_BROKER_IP   "192.168.178.50"
 #define MQTT_PORT        1884
 #define MQTT_TOPIC       "trip/data"
 
