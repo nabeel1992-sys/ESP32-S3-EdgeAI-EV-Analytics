@@ -41,7 +41,7 @@ Using TensorFlow Lite for Microcontrollers (via Edge Impulse), the system succes
 ![Temperature Prediction](images/WLTP_Temp_Pred.png)
 
 ## 📂 Repository Structure
-```text
+```bash
 📦 Edge_AI_EV_Project
  ┣ 📂 data                  # Contains the WLTP_Class3b_1Hz_full.csv file (uploaded via LittleFS)
  ┣ 📂 include               # Header files defining cross-module structs and variables
@@ -59,6 +59,7 @@ Using TensorFlow Lite for Microcontrollers (via Edge Impulse), the system succes
  │ ┗ 📜 shared_state.cpp    # Mutexes and globally shared state instances
  ┣ 📂 images                # Architecture and result visual assets
  ┗ 📜 platformio.ini        # Build flags, PSRAM config, and LittleFS setup
+```
 
  ## 🛠️ Setup and Installation
 ### Hardware: ESP32-S3 DevKit (16MB Flash, 8MB PSRAM recommended).
