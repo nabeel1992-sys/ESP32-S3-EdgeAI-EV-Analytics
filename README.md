@@ -62,22 +62,20 @@ Using TensorFlow Lite for Microcontrollers (via Edge Impulse), the system succes
 ```
 
  ## 🛠️ Setup and Installation
-### Hardware: ESP32-S3 DevKit (16MB Flash, 8MB PSRAM recommended).
+* **Hardware:**  ESP32-S3 DevKit (16MB Flash, 8MB PSRAM recommended).
 
-Environment: VS Code with the PlatformIO extension.
+* **Environment:**  VS Code with the PlatformIO extension.
 
-Configuration: * Update WIFI_SSID, WIFI_PASSWORD, and MQTT_BROKER_IP in src/config.h.
+* **Configuration:**  Update WIFI_SSID, WIFI_PASSWORD, and MQTT_BROKER_IP in src/config.h.
 
-Ensure board_build.filesystem = littlefs is set in your platformio.ini.
+* **File System Upload:** Click the PlatformIO icon -> Project Tasks -> env:esp32-s3-devkitc-1 -> Platform -> Build Filesystem Image followed by Upload Filesystem Image to move the dataset to the board's flash memory.
 
-File System Upload: * Click the PlatformIO icon -> Project Tasks -> env:esp32-s3-devkitc-1 -> Platform -> Build Filesystem Image followed by Upload Filesystem Image to move the dataset to the board's flash memory.
+* **Firmware Upload:** Build and Upload the main firmware code using the standard PlatformIO arrow → button.
 
-Firmware Upload: Build and Upload the main firmware code using the standard PlatformIO arrow → button.
+* **Dashboard Setup:**  Open your Node-RED instance, select Import from the top-right menu, and load the node_red/flows.json file. Ensure your local MQTT broker (e.g., Mosquitto) is running and configured correctly.
 
-Dashboard Setup: Open your Node-RED instance, select Import from the top-right menu, and load the node_red/flows.json file. Ensure your local MQTT broker (e.g., Mosquitto) is running and configured correctly.
-
-🎓 Academic Context
+ ## 🎓 Academic Context
 This project was developed and submitted as a Master's Thesis for the Master of Science in Electrical Engineering program at Lappeenranta-Lahti University of Technology (LUT), Finland.
 
-📜 License
+ ## 📜 License
 Distributed under the MIT License.
