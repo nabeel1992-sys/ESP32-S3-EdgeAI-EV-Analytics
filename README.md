@@ -60,8 +60,8 @@ Using TensorFlow Lite for Microcontrollers (via Edge Impulse), the system succes
  ┣ 📂 images                # Architecture and result visual assets
  ┗ 📜 platformio.ini        # Build flags, PSRAM config, and LittleFS setup
 
- 🛠️ Setup and Installation
-Hardware: ESP32-S3 DevKit (16MB Flash, 8MB PSRAM recommended).
+ ## 🛠️ Setup and Installation
+### Hardware: ESP32-S3 DevKit (16MB Flash, 8MB PSRAM recommended).
 
 Environment: VS Code with the PlatformIO extension.
 
